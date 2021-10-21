@@ -1,0 +1,43 @@
+{
+  "name": "underscores",
+  "version": "1.0.0",
+  "description": "Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.",
+  "author": "Automattic Theme Team",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "scripts": {
+    "build": "wp-scripts build",
+    "build:custom": "wp-scripts build --entry ./js/index.js -o ./js/build",
+    "start": "wp-scripts start",
+    "start:custom": "wp-scripts start --entry ./js/index.js -o ./js/build",
+    "help": "webpack --help",
+    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+    "compile:css": "node-sass sass/ -o ./ -w && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+    "compile:rtl": "rtlcss style.css style-rtl.css",
+    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'js/*.js'",
+    "test:e2e": "wp-scripts test-e2e",
+    "bundle": "dir-archiver --src . --dest ../taro-theme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map"
+  },
+  "homepage": "https://github.com/Automattic/_s#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automattic/_s.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Automattic/_s/issues"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "18.0.0",
+    "@wordpress/stylelint-config": "^19.1.0",
+    "dir-archiver": "1.2.0",
+    "node-sass": "6.0.1",
+    "rtlcss": "3.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.0"
+  }
+}
