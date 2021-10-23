@@ -1,7 +1,8 @@
 // Custom.scss
 // Option A: Include all of Bootstrap
 
-// Include any default variable overrides here (though functions won't be available)
+// Include any default variable overrides
+// here (though functions won't be available)
 
 // @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -16,12 +17,14 @@
 
 
 // scss-docs-start grid-breakpoints
-$grid-breakpoints: (xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1400px);
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+);
 // scss-docs-end grid-breakpoints
 
 // 3. Include remainder of required Bootstrap stylesheets
@@ -65,7 +68,8 @@ $grid-breakpoints: (xs: 0,
 // Helpers
 @import "../node_modules/bootstrap/scss/helpers";
 
-// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utililies.scss`
+// 5. Optionally include utilities API last to generate classes based on
+// the Sass map in `_utililies.scss`
 @import "../node_modules/bootstrap/scss/utilities/api";
 
 // 6. Add additional custom code here

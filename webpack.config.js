@@ -4,13 +4,13 @@ const path = require('path');
 module.exports = {
 	...defaultConfig,
 	entry: {
-		index: path.resolve(process.cwd(), 'js', 'index.js'),
-		customizer: path.resolve(process.cwd(), 'js', 'customizer.js'),
-		navigation: path.resolve(process.cwd(), 'js', 'navigation.js'),
+		index: path.resolve(process.cwd(), './app/js', 'index.js'),
+		customizer: path.resolve(process.cwd(), './app/js', 'customizer.js'),
+		navigation: path.resolve(process.cwd(), './app/js', 'navigation.js'),
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve( __dirname, 'js/build' ),
+		path: path.resolve( __dirname, './build' ),
 	},
 	module: {
 		...defaultConfig.module,
