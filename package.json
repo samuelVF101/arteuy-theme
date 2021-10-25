@@ -38,6 +38,7 @@
     "@wordpress/stylelint-config": "^19.1.0",
     "dir-archiver": "1.2.0",
     "node-sass": "6.0.1",
+    "prettier": "2.4.1",
     "rtlcss": "3.4.0"
   },
   "dependencies": {
