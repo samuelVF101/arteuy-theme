@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.com/
  *
- * @package Taro_Theme
+ * @package Arteuy_Theme
  */
 
 /**
@@ -14,13 +14,13 @@
  * See: https://jetpack.com/support/responsive-videos/
  * See: https://jetpack.com/support/content-options/
  */
-function taro_theme_jetpack_setup() {
+function arteuy_theme_jetpack_setup() {
 	// Add theme support for Infinite Scroll.
 	add_theme_support(
 		'infinite-scroll',
 		array(
 			'container' => 'main',
-			'render'    => 'taro_theme_infinite_scroll_render',
+			'render'    => 'arteuy_theme_infinite_scroll_render',
 			'footer'    => 'page',
 		)
 	);
@@ -33,7 +33,7 @@ function taro_theme_jetpack_setup() {
 		'jetpack-content-options',
 		array(
 			'post-details' => array(
-				'stylesheet' => 'taro-theme-style',
+				'stylesheet' => 'arteuy-theme-style',
 				'date'       => '.posted-on',
 				'categories' => '.cat-links',
 				'tags'       => '.tags-links',
@@ -48,12 +48,12 @@ function taro_theme_jetpack_setup() {
 		)
 	);
 }
-add_action( 'after_setup_theme', 'taro_theme_jetpack_setup' );
+add_action( 'after_setup_theme', 'arteuy_theme_jetpack_setup' );
 
 /**
  * Custom render function for Infinite Scroll.
  */
-function taro_theme_infinite_scroll_render() {
+function arteuy_theme_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
 		if ( is_search() ) :

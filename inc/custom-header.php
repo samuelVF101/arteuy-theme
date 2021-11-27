@@ -8,39 +8,39 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Taro_Theme
+ * @package Arteuy_Theme
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses taro_theme_header_style()
+ * @uses arteuy_theme_header_style()
  */
-function taro_theme_custom_header_setup() {
+function arteuy_theme_custom_header_setup() {
 	add_theme_support(
 		'custom-header',
 		apply_filters(
-			'taro_theme_custom_header_args',
+			'arteuy_theme_custom_header_args',
 			array(
 				'default-image'      => '',
 				'default-text-color' => '000000',
 				'width'              => 1000,
 				'height'             => 250,
 				'flex-height'        => true,
-				'wp-head-callback'   => 'taro_theme_header_style',
+				'wp-head-callback'   => 'arteuy_theme_header_style',
 			)
 		)
 	);
 }
-add_action( 'after_setup_theme', 'taro_theme_custom_header_setup' );
+add_action( 'after_setup_theme', 'arteuy_theme_custom_header_setup' );
 
-if ( ! function_exists( 'taro_theme_header_style' ) ) :
+if ( ! function_exists( 'arteuy_theme_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see taro_theme_custom_header_setup().
+	 * @see arteuy_theme_custom_header_setup().
 	 */
-	function taro_theme_header_style() {
+	function arteuy_theme_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/*

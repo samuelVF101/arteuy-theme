@@ -1,11 +1,10 @@
 <?php
-
 /**
- * Taro Theme functions and definitions
+ * Arteuy Theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Taro_Theme
+ * @package Arteuy_Theme
  */
 
 if (!defined('_S_VERSION')) {
@@ -149,7 +148,7 @@ function taro_theme_scripts()
 	wp_style_add_data('taro-theme-style', 'rtl', 'replace');
 
 	// Check to see if the file exists.
-	$deps_file = plugin_dir_path(__FILE__) . '/js/build/index.asset.php';
+	$deps_file = plugin_dir_path(__FILE__) . '/build/index.asset.php';
 
 	// Set default fallback to dependencies array
 	$deps = [];
@@ -159,7 +158,7 @@ function taro_theme_scripts()
 		$deps_file = require($deps_file);
 		$deps = $deps_file['dependencies'];
 	}
-	wp_enqueue_script('taro-theme-navigation', get_template_directory_uri() . '/js/build/index.js', $deps, _S_VERSION, true);
+	wp_enqueue_script('taro-theme-navigation', get_template_directory_uri() . '/build/index.js', $deps, _S_VERSION, true);
 
 
 	// Check to see if the file exists.
@@ -173,7 +172,7 @@ function taro_theme_scripts()
 		$deps_file = require($deps_file);
 		$deps = $deps_file['dependencies'];
 	}
-	wp_enqueue_script('taro-theme-navigation', get_template_directory_uri() . '/js/build/navigation.js', $deps, _S_VERSION, true);
+	wp_enqueue_script('taro-theme-navigation', get_template_directory_uri() . '/build/navigation.js', $deps, _S_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

@@ -1,5 +1,5 @@
 /*
-Theme Name: Taro Theme
+Theme Name: Arteuy Theme
 
 WooCommerce styles override
 */
@@ -7,7 +7,7 @@ WooCommerce styles override
 /**
  * Shop tables
  */
-table.shop_table_responsive thead {
+ table.shop_table_responsive thead {
 	display: none;
 }
 

@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Taro_Theme
+ * @package Arteuy_Theme
  */
 
 get_header();
