@@ -1,8 +1,8 @@
 /*!
 Theme Name: Arteuy Theme
-Theme URI: https://github.com/samuelV102/wp-content
+Theme URI: https://github.com/samuelVF101/arteuy-theme
 Author: samale456uruguay@gmail.com
-Author URI: https://github.com/samuelV102
+Author URI: https://github.com/samuelVF101/
 Description: Arteuy Theme
 Version: 1.0.0
 Tested up to: 5.4
@@ -103,3 +103,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 //Bootstrap customization
 @import "custom.scss";
+
+body{
+	color:#000;
+}

@@ -1,48 +1,64 @@
 {
-  "name": "arteuy-theme",
-  "version": "1.0.0",
-  "description": "",
-  "author": "samuelVF101",
-  "license": "GPL-2.0-or-later",
-  "keywords": [
-    "WordPress",
-    "Theme"
-  ],
-  "scripts": {
-    "build": "wp-scripts build",
-    "build:custom": "wp-scripts build --entry ./app/js/index.js -o ./build",
-    "start": "wp-scripts start",
-    "start:custom": "wp-scripts start --entry ./app/js/index.js -o ./build",
-    "help": "webpack --help",
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ -w && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style './app/sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js './app/js/*.js'",
-    "test:e2e": "wp-scripts test-e2e",
-    "bundle": "dir-archiver --src . --dest ../taro-theme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
-    "check-engines": "wp-scripts check-engines",
-    "check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
-    "format:app": "wp-scripts format ./app"
-  },
-  "homepage": "https://github.com/Automattic/_s#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Automattic/_s.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Automattic/_s/issues"
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "19.0.0",
-    "@wordpress/stylelint-config": "^19.1.0",
-    "dir-archiver": "1.2.0",
-    "node-sass": "6.0.1",
-    "prettier": "2.4.1",
-    "rtlcss": "3.4.0"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.10.2",
-    "bootstrap": "^5.1.3"
-  }
+	"name": "arteuy-theme",
+	"version": "1.0.0",
+	"description": "",
+	"author": "samuelVF101",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"Theme"
+	],
+	"scripts": {
+		"build": "wp-scripts build",
+		"build:custom": "wp-scripts build --entry ./app/js/index.js -o ./build",
+		"start": "wp-scripts start",
+		"start:custom": "wp-scripts start --entry ./app/js/index.js -o ./build",
+		"help": "webpack --help",
+		"watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+		"compile:css": "node-sass ./app/sass/ -o ./ -w && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+		"compile:rtl": "rtlcss style.css style-rtl.css",
+		"lint:scss": "wp-scripts lint-style './app/sass/**/*.scss'",
+		"lint:js": "wp-scripts lint-js './app/js/*.js'",
+		"test:e2e": "wp-scripts test-e2e",
+		"bundle": "dir-archiver --src . --dest ../arteuy-theme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
+		"format:app": "wp-scripts format ./app"
+	},
+	"homepage": "https://github.com/Automattic/_s#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Automattic/_s.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Automattic/_s/issues"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "19.0.0",
+		"@wordpress/stylelint-config": "^19.1.0",
+		"dir-archiver": "1.2.0",
+		"node-sass": "6.0.1",
+		"prettier": "2.4.1",
+		"rtlcss": "3.4.0"
+	},
+	"dependencies": {
+		"@popperjs/core": "^2.10.2",
+		"bootstrap": "^5.1.3"
+	},
+	"browserslist": [
+		"last 1 Chrome major versions",
+		"last 2 Firefox major versions",
+		"last 2 Safari major versions",
+		"last 2 Edge major versions",
+		"last 3 Android major versions",
+		"last 3 ChromeAndroid major versions",
+		"last 2 iOS major versions"
+	],
+	"prettier": {
+		"trailingComma": "es5",
+		"useTabs": true,
+		"tabWidth": 4,
+		"semi": false,
+		"singleQuote": true
+	}
 }
