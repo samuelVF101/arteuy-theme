@@ -19,4 +19,10 @@ a {
 	&:active {
 		outline: 0;
 	}
+
+	transition: 0.3s all ease;
+	&,
+	&:hover {
+		text-decoration: none !important;
+	}
 }

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Template Name: Content
  * Template part for displaying posts
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
@@ -40,7 +41,7 @@
 					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'arteuy-theme' ),
 					array(
 						'span' => array(
-							'class' => array(),
+							'class' => [],
 						),
 					)
 				),

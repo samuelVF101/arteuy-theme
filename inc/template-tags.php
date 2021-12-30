@@ -83,7 +83,7 @@ if ( ! function_exists( 'arteuy_theme_entry_footer' ) ) :
 						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'arteuy-theme' ),
 						array(
 							'span' => array(
-								'class' => array(),
+								'class' => [],
 							),
 						)
 					),
@@ -100,7 +100,7 @@ if ( ! function_exists( 'arteuy_theme_entry_footer' ) ) :
 					__( 'Edit <span class="screen-reader-text">%s</span>', 'arteuy-theme' ),
 					array(
 						'span' => array(
-							'class' => array(),
+							'class' => [],
 						),
 					)
 				),

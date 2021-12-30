@@ -24,7 +24,7 @@
 					__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'arteuy-theme' ),
 					array(
 						'a' => array(
-							'href' => array(),
+							'href' => [],
 						),
 					)
 				) . '</p>',

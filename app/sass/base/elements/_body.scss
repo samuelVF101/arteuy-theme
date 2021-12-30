@@ -5,3 +5,34 @@
 $body-bg: $white;
 $body-color: $black;
 $body-text-align: null;
+
+body {
+	background-color: #fff;
+
+	height: 200vh;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba($black, 0.5);
+		transition: 0.3s all ease;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 1;
+	}
+	&.offcanvas-menu {
+		&:before {
+			opacity: 1;
+			z-index: 1002;
+			visibility: visible;
+		}
+	}
+}

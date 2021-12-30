@@ -1,109 +1,104 @@
-.main-navigation {
-	display: block;
-	width: 100%;
+$navbar_ml: 45px;
 
-	ul {
+.navbar-collapse {
+	> div.section-menu-socialnetworks {
 		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
+	}
+	img.logo-misterio {
+		display: none;
+	}
+}
 
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
-			position: absolute;
-			top: 100%;
-			left: -999em;
-			z-index: 99999;
+// mobile menu
+@media only screen and (max-width: 992px) {
+	.navbar-collapse {
+		width: 320px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2000;
+		background-color: $grey_dark;
+		height: calc(100vh) !important;
+		padding-right: 45px;
+		transform: translateX(-110%);
+		box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+		transition: 0.3s all ease-in-out;
 
-			ul {
-				left: -999em;
-				top: 0;
-			}
+		&.show {
+			transform: translateX(0%);
+		}
 
-			li {
-
-				&:hover > ul,
-				&.focus > ul {
-					display: block;
-					left: auto;
+		.navbar-nav {
+			a {
+				color: $white;
+				font-family: URWGothicL;
+				font-size: 16.5px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1;
+				letter-spacing: 0.39px;
+				&:hover {
+					font-weight: 500;
 				}
 			}
+		}
 
-			a {
-				width: 200px;
+		.navbar-close {
+			margin: 35px 0;
+			margin-left: $navbar_ml;
+			display: inline-block;
+		}
+		> div.section-menu {
+			.navbar-nav {
+				margin-left: $navbar_ml;
+				border-top: solid 1px #fff;
+				padding: 20px 0;
+				.menu-item {
+					margin-bottom: 25px;
+				}
 			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
+		}
+		> div.section-menu-socialnetworks {
+			display: block;
+			
+			.navbar-nav {
+				min-width: 90px;
+				max-width: 94px;
+				height: 24px;
+				margin-left: 45px;
+				padding: 0;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				.menu-item {
+					height: 24px;
+					width: 24px;
+					a {
+						font-size: 0;
+						&:before {
+							content: '';
+							background-repeat: no-repeat;
+							background-size: 24px;
+							background-position-x: 0px;
+							background-position-y: 0px;
+							padding: 13px;
+						}
+						&[href*='facebook']:before {
+							background-image: url(../images/icon-menu-facebook-x32.png);
+						}
+						&[href*='twitter']:before {
+							background-image: url(../images/icon-menu-twitter-x32.png);
+						}
+					}
+				}
 			}
 		}
 
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
+		img.logo-misterio {
+			display: block;
+			margin: 34px 0;
+			margin-left: $navbar_ml;
 		}
-	}
-
-	li {
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
-		}
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-}
-
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-
-	.menu-toggle {
-		display: none;
-	}
-
-	.main-navigation ul {
-		display: flex;
-	}
-}
-
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
-
-	.site-main & {
-		margin: 0 0 1.5em;
-	}
-
-	.nav-links {
-		display: flex;
-	}
-
-	.nav-previous {
-		flex: 1 0 50%;
-	}
-
-	.nav-next {
-		text-align: end;
-		flex: 1 0 50%;
 	}
 }

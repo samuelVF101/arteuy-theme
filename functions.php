@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Arteuy Theme functions and definitions
  *
@@ -7,12 +8,12 @@
  * @package Arteuy_Theme
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define('_S_VERSION', '1.0.0');
 }
 
-if ( ! function_exists( 'arteuy_theme_setup' ) ) :
+if (!function_exists('arteuy_theme_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,17 +21,18 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function arteuy_theme_setup() {
+	function arteuy_theme_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on Arteuy Theme, use a find and replace
 		 * to change 'arteuy-theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'arteuy-theme', get_template_directory() . '/languages' );
+		load_theme_textdomain('arteuy-theme', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -38,21 +40,14 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
-
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus(
-			array(
-				'menu-1' => esc_html__( 'Primary', 'arteuy-theme' ),
-			)
-		);
+		add_theme_support('post-thumbnails');
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -60,7 +55,7 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 		 */
 		add_theme_support(
 			'html5',
-			array(
+			[
 				'search-form',
 				'comment-form',
 				'comment-list',
@@ -68,7 +63,7 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 				'caption',
 				'style',
 				'script',
-			)
+			]
 		);
 
 		// Set up the WordPress core custom background feature.
@@ -76,15 +71,15 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 			'custom-background',
 			apply_filters(
 				'arteuy_theme_custom_background_args',
-				array(
+				[
 					'default-color' => 'ffffff',
 					'default-image' => '',
-				)
+				]
 			)
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		/**
 		 * Add support for core custom logo.
@@ -93,16 +88,16 @@ if ( ! function_exists( 'arteuy_theme_setup' ) ) :
 		 */
 		add_theme_support(
 			'custom-logo',
-			array(
+			[
 				'height'      => 250,
 				'width'       => 250,
 				'flex-width'  => true,
 				'flex-height' => true,
-			)
+			]
 		);
 	}
 endif;
-add_action( 'after_setup_theme', 'arteuy_theme_setup' );
+add_action('after_setup_theme', 'arteuy_theme_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -111,30 +106,32 @@ add_action( 'after_setup_theme', 'arteuy_theme_setup' );
  *
  * @global int $content_width
  */
-function arteuy_theme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'arteuy_theme_content_width', 640 );
+function arteuy_theme_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('arteuy_theme_content_width', 640);
 }
-add_action( 'after_setup_theme', 'arteuy_theme_content_width', 0 );
+add_action('after_setup_theme', 'arteuy_theme_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function arteuy_theme_widgets_init() {
+function arteuy_theme_widgets_init()
+{
 	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'arteuy-theme' ),
+		[
+			'name'          => esc_html__('Sidebar', 'arteuy-theme'),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'arteuy-theme' ),
+			'description'   => esc_html__('Add widgets here.', 'arteuy-theme'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		)
+		]
 	);
 }
-add_action( 'widgets_init', 'arteuy_theme_widgets_init' );
+add_action('widgets_init', 'arteuy_theme_widgets_init');
 
 
 function asset($asset_name)
@@ -150,47 +147,78 @@ function asset($asset_name)
 	return $path . $file;
 }
 
+/**
+ * Registers a stylesheet.
+ */
+function arteuy_theme_styles()
+{
+	wp_register_style('index', get_stylesheet_directory_uri() . asset('index.css'));
+	wp_enqueue_style('index');
+}
+// Register style sheet.
+add_action('wp_enqueue_scripts', 'arteuy_theme_styles');
+
 
 /**
  * Enqueue scripts and styles.
  */
 function arteuy_theme_scripts()
 {
-	wp_enqueue_style( 'arteuy-theme-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'arteuy-theme-style', 'rtl', 'replace' );
-
-	// Check to see if the file exists.
-	$deps_file = plugin_dir_path(__FILE__) . '/build/index.asset.php';
-
-	// Set default fallback to dependencies array
-	$deps = [];
-
-	// If the file can be found, use it to set the dependencies array.
-	if (file_exists($deps_file)) {
-		$deps_file = require($deps_file);
-		$deps = $deps_file['dependencies'];
-	}
-	wp_enqueue_script('arteuy-theme-index', get_template_directory_uri() . asset('index.js'), $deps, _S_VERSION, true);
+	wp_enqueue_style('arteuy-theme-style', get_stylesheet_uri(), [], _S_VERSION);
+	wp_style_add_data('arteuy-theme-style', 'rtl', 'replace');
 
 
-	// Check to see if the file exists.
-	$deps_file = plugin_dir_path(__FILE__) . '/js/build/navigation.asset.php';
-
-	// Set default fallback to dependencies array
-	$deps = [];
-
-	// If the file can be found, use it to set the dependencies array.
-	if (file_exists($deps_file)) {
-		$deps_file = require($deps_file);
-		$deps = $deps_file['dependencies'];
-	}
-	wp_enqueue_script('arteuy-theme-navigation', get_template_directory_uri() . asset('navigation.js'), $deps, _S_VERSION, true);
+	wp_enqueue_script('arteuy-theme-index', get_template_directory_uri() . asset('index.js'), ['jquery'], _S_VERSION, true);
+	wp_enqueue_script('arteuy-theme-navigation', get_template_directory_uri() . asset('navigation.js'), ['jquery'], _S_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'arteuy_theme_scripts' );
+add_action('wp_enqueue_scripts', 'arteuy_theme_scripts');
+
+
+
+function gutenberg_register_blocks()
+{
+
+	if (!function_exists('register_block_type')) {
+		// Gutenberg is not active.
+		return;
+	}
+
+	// automatically load dependencies and version
+	$asset_file = include(get_template_directory() . asset('gutenberg_blocks.php'));
+
+	wp_register_script(
+		'gutenberg_blocks',
+		get_template_directory_uri() . asset('gutenberg_blocks.js'),
+		$asset_file['dependencies'],
+		$asset_file['version']
+	);
+
+	wp_register_style(
+		'gutenberg_blocks_editor',
+		get_stylesheet_directory_uri() . asset('gutenberg_blocks_editor.css'),
+		['wp-edit-blocks'],
+		_S_VERSION
+	);
+
+	wp_register_style(
+		'gutenberg_blocks_style',
+		get_stylesheet_directory_uri() . asset('gutenberg_blocks_style.css'),
+		[],
+		_S_VERSION
+	);
+
+	register_block_type('gutenberg-blocks/home-slider', array(
+		'api_version' => 2,
+		'style' => 'gutenberg_blocks_style',
+        'editor_style' => 'gutenberg_blocks_editor',
+		'editor_script' => 'gutenberg_blocks',
+	));
+}
+add_action('init', 'gutenberg_register_blocks');
 
 /**
  * Implement the Custom Header feature.
@@ -215,14 +243,13 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
 /**
  * Load WooCommerce compatibility file.
  */
-if ( class_exists( 'WooCommerce' ) ) {
+if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
-
