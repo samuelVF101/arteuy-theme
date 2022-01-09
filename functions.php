@@ -188,34 +188,34 @@ function gutenberg_register_blocks()
 	}
 
 	// automatically load dependencies and version
-	$asset_file = include(get_template_directory() . asset('gutenberg_blocks.php'));
+	$asset_file = include(get_template_directory() . asset('g-block-arteuy.php'));
 
 	wp_register_script(
-		'gutenberg_blocks',
-		get_template_directory_uri() . asset('gutenberg_blocks.js'),
+		'g_block_arteuy',
+		get_template_directory_uri() . asset('g-block-arteuy.js'),
 		$asset_file['dependencies'],
 		$asset_file['version']
 	);
 
 	wp_register_style(
-		'gutenberg_blocks_editor',
-		get_stylesheet_directory_uri() . asset('gutenberg_blocks_editor.css'),
+		'g_block_arteuy_editor',
+		get_stylesheet_directory_uri() . asset('g-block-arteuy-editor.css'),
 		['wp-edit-blocks'],
 		_S_VERSION
 	);
 
 	wp_register_style(
-		'gutenberg_blocks_style',
-		get_stylesheet_directory_uri() . asset('gutenberg_blocks_style.css'),
+		'g_block_arteuy_style',
+		get_stylesheet_directory_uri() . asset('g-block-arteuy-style.css'),
 		[],
 		_S_VERSION
 	);
 
-	register_block_type('gutenberg-blocks/home-slider', array(
+	register_block_type('arteuy/slider', array(
 		'api_version' => 2,
-		'style' => 'gutenberg_blocks_style',
-        'editor_style' => 'gutenberg_blocks_editor',
-		'editor_script' => 'gutenberg_blocks',
+		'style' => 'g_block_arteuy_style',
+		'editor_style' => 'g_block_arteuy_editor',
+		'editor_script' => 'g_block_arteuy',
 	));
 }
 add_action('init', 'gutenberg_register_blocks');

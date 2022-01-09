@@ -15,21 +15,21 @@ module.exports = {
 		navigation: {
 			import: path.resolve(process.cwd(), './app', 'navigation.js'),
 		},
-		gutenberg_blocks: {
-			import: path.resolve(process.cwd(), './app', 'gutenberg_blocks.js'),
+		'g-block-arteuy': {
+			import: path.resolve(process.cwd(), './app/gutenberg', 'index.js'),
 		},
-		gutenberg_blocks_style: {
+		'g-block-arteuy-style': {
 			import: path.resolve(
 				process.cwd(),
-				'./app/sass',
-				'gutenberg_blocks_style.scss'
+				'./app/sass/gutenberg',
+				'block_style.scss'
 			),
 		},
-		gutenberg_blocks_editor: {
+		'g-block-arteuy-editor': {
 			import: path.resolve(
 				process.cwd(),
-				'./app/sass',
-				'gutenberg_blocks_editor.scss'
+				'./app/sass/gutenberg',
+				'block_editor.scss'
 			),
 		},
 	},
