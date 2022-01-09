@@ -40,24 +40,33 @@ export const BlockSlideEdit = (props) => {
 
 	const removeMedia = () => {
 		props.setAttributes({
-			mediaId: 0,
-			mediaUrl: '',
+			mediaIds: [],
+			mediaUrls: [],
 		})
 	}
 
 	const onSelectMedia = (media) => {
+		var mediaIds = []
+		var mediaUrls = []
+		media.forEach((media) => {
+			mediaIds.push(media.id)
+			mediaUrls.push(media.url)
+		})
+
 		props.setAttributes({
-			mediaId: media.id,
-			mediaUrl: media.url,
+			mediaIds: mediaIds,
+			mediaUrls: mediaUrls,
 		})
 	}
 
-	const blockStyle = {
-		backgroundImage:
-			attributes.mediaUrl != ''
-				? 'url("' + attributes.mediaUrl + '")'
-				: 'none',
-	}
+	const blocksStyle =
+		attributes.mediaUrls.length > 0
+			? attributes.mediaUrls.map((url) => {
+					return {
+						backgroundImage: `url(${url})`,
+					}
+			  })
+			: []
 
 	const onChangeAlignment = (newAlignment) => {
 		setAttributes({
@@ -87,56 +96,67 @@ export const BlockSlideEdit = (props) => {
 									<MediaUploadCheck>
 										<MediaUpload
 											onSelect={onSelectMedia}
-											value={attributes.mediaId}
+											value={attributes.mediaIds}
 											allowedTypes={['image']}
+											multiple={true}
 											render={({ open }) => (
 												<Button
 													className={
-														attributes.mediaId == 0
+														attributes.mediaIds
+															.length == 0
 															? 'editor-post-featured-image__toggle'
 															: 'editor-post-featured-image__preview'
 													}
 													onClick={open}
 												>
-													{attributes.mediaId == 0 &&
+													{attributes.mediaIds
+														.length == 0 &&
 														__(
 															'Choose an image',
 															'awp'
 														)}
-													{props.media !=
-														undefined && (
-														<ResponsiveWrapper
-															naturalWidth={
-																props.media
-																	.media_details
-																	.width
-															}
-															naturalHeight={
-																props.media
-																	.media_details
-																	.height
-															}
-														>
-															<img
-																src={
-																	props.media
-																		.source_url
-																}
-															/>
-														</ResponsiveWrapper>
-													)}
+													{
+														(console.log(
+															'props.media',
+															props.media
+														),
+														props.media.length >
+															0 &&
+															props.media.map(
+																(media) => (
+																	<ResponsiveWrapper
+																		naturalWidth={
+																			media
+																				.media_details
+																				.width
+																		}
+																		naturalHeight={
+																			media
+																				.media_details
+																				.height
+																		}
+																	>
+																		<img
+																			src={
+																				media.source_url
+																			}
+																		/>
+																	</ResponsiveWrapper>
+																)
+															))
+													}
 												</Button>
 											)}
 										/>
 									</MediaUploadCheck>
-									{attributes.mediaId != 0 && (
+									{attributes.mediaIds.length > 0 && (
 										<MediaUploadCheck>
 											<MediaUpload
 												title={__(
 													'Replace image',
 													'awp'
 												)}
-												value={attributes.mediaId}
+												value={attributes.mediaIds}
 												onSelect={onSelectMedia}
 												allowedTypes={['image']}
 												render={({ open }) => (
@@ -154,7 +174,7 @@ export const BlockSlideEdit = (props) => {
 											/>
 										</MediaUploadCheck>
 									)}
-									{attributes.mediaId != 0 && (
+									{attributes.mediaIds.length > 0 && (
 										<MediaUploadCheck>
 											<Button
 												onClick={removeMedia}
@@ -170,7 +190,9 @@ export const BlockSlideEdit = (props) => {
 						</PanelBody>
 					</InspectorControls>
 				}
-				<div style={blockStyle}>... Your block content here...</div>
+				{blocksStyle.map((style) => (
+					<div style={style}></div>
+				))}
 			</Fragment>
 		</div>
 	)
@@ -178,13 +200,17 @@ export const BlockSlideEdit = (props) => {
 
 export const BlockSlideSave = (props) => {
 	const { attributes } = props
-	const blockStyle = {
-		backgroundImage:
-			attributes.mediaUrl != ''
-				? 'url("' + attributes.mediaUrl + '")'
-				: 'none',
-	}
-	return <div style={blockStyle}>... Your block content here...</div>
+
+	const blocksStyle =
+		attributes.mediaUrls.length > 0
+			? attributes.mediaUrls.map((url) => {
+					return {
+						backgroundImage: `url(${url})`,
+					}
+			  })
+			: []
+
+	return blocksStyle.map((style) => <div style={style}></div>)
 }
 
 export const registerDefaultBlockSlide = () => {
@@ -207,13 +233,13 @@ export const registerDefaultBlockSlide = () => {
 				type: 'boolean',
 				default: true,
 			},
-			mediaId: {
-				type: 'number',
-				default: 0,
+			mediaIds: {
+				type: 'array',
+				default: [],
 			},
-			mediaUrl: {
-				type: 'string',
-				default: '',
+			mediaUrls: {
+				type: 'array',
+				default: [],
 			},
 		},
 		example: {
@@ -224,8 +250,10 @@ export const registerDefaultBlockSlide = () => {
 		},
 		edit: withSelect((select, props) => {
 			return {
-				media: props.attributes.mediaId
-					? select('core').getMedia(props.attributes.mediaId)
+				media: props.attributes.mediaIds
+					? select('core').getMediaItems({
+							include: props.attributes.mediaIds,
+					  })
 					: undefined,
 			}
 		})(BlockSlideEdit),
