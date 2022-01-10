@@ -1,11 +1,37 @@
 $navbar_ml: 45px;
 
+header.site-navbar {
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+	background-color: transparent;
+
+	.navbar {
+		padding: 23px 160px 23px 160px;
+	}
+}
+
 .navbar-collapse {
 	> div.section-menu-socialnetworks {
 		display: none;
 	}
 	img.logo-misterio {
 		display: none;
+	}
+	.navbar-nav {
+		a {
+			color: $white;
+			font-family: URWGothicL;
+			font-size: 16.5px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1;
+			letter-spacing: 0.39px;
+			&:hover {
+				font-weight: 500;
+			}
+		}
 	}
 }
 
@@ -28,22 +54,6 @@ $navbar_ml: 45px;
 			transform: translateX(0%);
 		}
 
-		.navbar-nav {
-			a {
-				color: $white;
-				font-family: URWGothicL;
-				font-size: 16.5px;
-				font-weight: normal;
-				font-stretch: normal;
-				font-style: normal;
-				line-height: 1;
-				letter-spacing: 0.39px;
-				&:hover {
-					font-weight: 500;
-				}
-			}
-		}
-
 		.navbar-close {
 			margin: 35px 0;
 			margin-left: $navbar_ml;
@@ -61,7 +71,7 @@ $navbar_ml: 45px;
 		}
 		> div.section-menu-socialnetworks {
 			display: block;
-			
+
 			.navbar-nav {
 				min-width: 90px;
 				max-width: 94px;

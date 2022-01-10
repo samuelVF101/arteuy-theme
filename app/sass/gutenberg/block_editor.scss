@@ -1,6 +1,12 @@
-.wp-block-arteuy-slider {
+.wp-block-arteuy-slider,
+.wp-block-arteuy-grid {
 	color: green;
 	background: #cfc;
 	border: 2px solid #9c9;
 	padding: 20px;
+}
+
+select[multiple] {
+	width: 100% !important;
+	min-height: 80px !important;
 }

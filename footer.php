@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer
  *
@@ -11,24 +12,52 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'arteuy-theme' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'arteuy-theme' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'arteuy-theme' ), 'arteuy-theme', '<a href="https://github.com/samuelV102">samale456uruguay@gmail.com</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+<footer id="colophon" class="site-footer">
+	<div class="footer-section-newsletter">
+		<h3>Accede a información actualizada sobre el mundo de la artesanía</h3>
+		<form action="">
+			<input type="email" name="email" id="email">
+			<button type="submit" class="btn btn-primary">Registrarme</button>
+		</form>
+	</div>
+	<div class="footer-section-menu">
+		<div class="row">
+			<div class="col-12 col-md-3">
+				<?php wp_nav_menu(['menu' => esc_html__('Principal', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-1', 'menu_class' => 'navbar-nav']); ?>
+			</div>
+			<div class="col-12 col-md-3">
+				<?php wp_nav_menu(['menu' => esc_html__('Menú 2', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-2', 'menu_class' => 'navbar-nav']); ?>
+			</div>
+			<div class="col-12 col-md-3">
+				<?php wp_nav_menu(['menu' => esc_html__('Menú 3', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-3', 'menu_class' => 'navbar-nav']); ?>
+			</div>
+			<div class="col-12 col-md-3">
+				<?php wp_nav_menu(['menu' => esc_html__('Redes sociales', 'arteuy-theme'), 'container_class' => 'section-menu-socialnetworks', 'menu_id' => 'menu-socialnetworks', 'menu_class' => 'navbar-nav']); ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-md-4">
+				<p>Dirección Nacional de Artesanías, Pequeñas y</p>
+				<p>Medianas Empresas - Dinapyme</p>
+				<p>Ministerio de Industria, Energía y Minería</p>
+			</div>
+			<div class="col-12 col-md-4">
+				<p>Calle Rincón 719 piso 2 - C.P. 11000</p>
+				<p>Montevideo, República Oriental del Uruguay</p>
+				<p>(+598) 2840.1234 int.3188</p>
+			</div>
+			<div class="col-12 col-md-4"></div>
+		</div>
+		<div class="d-flex justify-content-between">
+			<img class="logo-misterio" src="http://artesania.uy/wp-content/uploads/2021/12/logotipo-ministerio.png" alt="Logo del Ministerio">
+		</div>
+
+	</div>
+</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 
 </body>
+
 </html>

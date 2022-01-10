@@ -1,3 +1,43 @@
+.swiper {
+	.swiper-slide {
+		height: 664px;
+		.img {
+			height: 664px;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+	.swiper-button-next,
+	.swiper-button-prev {
+		top: auto;
+		bottom: 72px;
+		height: 13px;
+		width: 24px;
+	}
+	.swiper-button-next {
+		right: 165px;
+		&:after {
+			content: '';
+			background-image: url(../images/arrow-white-right@3x.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			height: 13px;
+			width: 24px;
+		}
+	}
+	.swiper-button-prev {
+		left: 165px;
+		&:after {
+			content: '';
+			background-image: url(../images/arrow-white-left@3x.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			height: 13px;
+			width: 24px;
+		}
+	}
+}
+
 .gallery {
 	margin-bottom: 1.5em;
 	display: grid;
@@ -12,7 +52,6 @@
 
 // Loops to enumerate the classes for gallery columns.
 @for $i from 2 through 9 {
-
 	.gallery-columns-#{$i} {
 		grid-template-columns: repeat($i, 1fr);
 	}

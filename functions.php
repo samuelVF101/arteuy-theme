@@ -206,18 +206,58 @@ function gutenberg_register_blocks()
 
 	wp_register_style(
 		'g_block_arteuy_style',
-		get_stylesheet_directory_uri() . asset('g-block-arteuy-style.css'),
+		get_stylesheet_directory_uri() . asset('g-block-arteuy.css'),
 		[],
 		_S_VERSION
 	);
 
-	register_block_type('arteuy/slider', array(
+	register_block_type('arteuy/grid', [
 		'api_version' => 2,
 		'style' => 'g_block_arteuy_style',
 		'editor_style' => 'g_block_arteuy_editor',
 		'editor_script' => 'g_block_arteuy',
-	));
+		'render_callback' => 'arteuy_block_render',
+		'attributes' => [
+			'alignment' => [
+				'type' => 'string',
+				'default' => 'none'
+			],
+			'active' => [
+				'type' => 'boolean',
+				'default' => true
+			],
+			'postIds' => [
+				'type' => 'array',
+				'default' => []
+			],
+		]
+	]);
+	function arteuy_block_render($attr, $content)
+	{
+		$str = '<section class="grid-section">
+		<div class="d-flex justify-content-between">
+		<h2>Directorio</h2> 
+		<a href="#">Ver todo</a>
+		</div>
+		<div class="d-flex justify-content-between">
+		<h3>Explora artesanos, talleres, comercios e instituciones</h3>
+		</div>
+		<div class="row">{%posts_str%}</div>
+		</section>';
+		$posts = get_posts(['include' => $attr['postIds']]);
+
+		$posts_str = '';
+		foreach ($posts as $i => $post) {
+
+			$featured_image_url = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+
+			$posts_str .= '<div class="col-12 col-md-3"><img src="' . $featured_image_url . '" /><h4>' . $post->post_title . '</h4><h5>Directorio</h5></div>';
+		}
+
+		return str_replace('{%posts_str%}', $posts_str, $str);
+	}
 }
+
 add_action('init', 'gutenberg_register_blocks');
 
 /**

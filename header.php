@@ -24,12 +24,12 @@
 
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
-	<div id="page" class="site">
+	<div id="page" class="site art-container">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'arteuy-theme'); ?></a>
 
-		<header id="masthead" class="site-navbar site-navbar-target py-4" role="banner">
+		<header id="masthead" class="site-navbar site-navbar-target" role="banner">
 
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container-fluid">
 					<?php if (has_custom_logo()) :  ?>
 						<?php
@@ -51,12 +51,7 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="main-navbar">
-						<a class="text-white navbar-close" href="#" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Close navigation">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
-								<path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
-							</svg>
-						</a>
+						
 						<?php wp_nav_menu(['menu' => esc_html__('Principal', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-1', 'menu_class' => 'navbar-nav']); ?>
 						<?php wp_nav_menu(['menu' => esc_html__('Menú 2', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-2', 'menu_class' => 'navbar-nav']); ?>
 						<?php wp_nav_menu(['menu' => esc_html__('Menú 3', 'arteuy-theme'), 'container_class' => 'section-menu', 'menu_id' => 'menu-3', 'menu_class' => 'navbar-nav']); ?>

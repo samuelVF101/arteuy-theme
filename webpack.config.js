@@ -18,13 +18,6 @@ module.exports = {
 		'g-block-arteuy': {
 			import: path.resolve(process.cwd(), './app/gutenberg', 'index.js'),
 		},
-		'g-block-arteuy-style': {
-			import: path.resolve(
-				process.cwd(),
-				'./app/sass/gutenberg',
-				'block_style.scss'
-			),
-		},
 		'g-block-arteuy-editor': {
 			import: path.resolve(
 				process.cwd(),

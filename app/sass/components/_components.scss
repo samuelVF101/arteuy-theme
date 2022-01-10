@@ -6,6 +6,10 @@
 --------------------------------------------- */
 @import "content/posts-and-pages";
 
+/* Footer
+--------------------------------------------- */
+@import "content/footer";
+
 /* Comments
 --------------------------------------------- */
 @import "comments/comments";
@@ -25,3 +29,8 @@
 /* Galleries
 --------------------------------------------- */
 @import "media/galleries";
+
+
+/* Gutenberg
+--------------------------------------------- */
+@import "gutenberg/grid";

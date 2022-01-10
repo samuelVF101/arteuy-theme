@@ -4,3 +4,6 @@ build
 
 .vscode
 .history
+
+*.zip
+*.rar

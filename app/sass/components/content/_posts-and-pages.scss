@@ -2,11 +2,6 @@
 	display: block;
 }
 
-.post,
-.page {
-	margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
 	display: none;
 }
@@ -20,4 +15,11 @@
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
+}
+
+@media only screen and (min-width: 1440px) {
+	.site.art-container {
+		max-width: 1440px;
+		margin: 0 auto;
+	}
 }
