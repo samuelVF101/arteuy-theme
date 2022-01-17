@@ -4,17 +4,15 @@
  */
 
 import { registerBlockType } from '@wordpress/blocks'
-
 import { Fragment } from '@wordpress/element'
-
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
+import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor'
 
 import {
 	SelectControl,
 	ToggleControl,
 	PanelBody,
 	PanelRow,
-	Button,
+	RadioControl,
 	ResponsiveWrapper,
 } from '@wordpress/components'
 
@@ -24,52 +22,37 @@ import { __ } from '@wordpress/i18n'
 
 import { useState } from 'react'
 
+import cardLogoImg from '../images/card-logo.png'
+
 export const BlockGridEdit = (props) => {
 	const { attributes, setAttributes } = props
 
 	const [editMode, setEditMode] = useState(false)
 
-	const removeMedia = () => {
-		setAttributes({
-			postIds: [],
-		})
+	const layout_config = {
+		1: {
+			per_page: 4,
+			column_sizes: [3, 3, 3, 3],
+		},
+		2: {
+			per_page: 3,
+			column_sizes: [6, 3, 3],
+		},
+		3: {
+			per_page: 3,
+			column_sizes: [3, 3, 6],
+		},
 	}
 
-	const onSelectPost = (posts) => {
-		var postIds = []
+	const posts = useSelect((select) => {
+		const { getEntityRecords } = select('core')
 
-		posts.forEach((id) => {
-			postIds.push(id)
+		return getEntityRecords('postType', 'post', {
+			per_page: layout_config[attributes.layout].per_page,
+			page: 1,
+			categories: attributes.categoryIds,
 		})
-
-		setAttributes({
-			postIds: postIds,
-		})
-
-		// jQuery('select.components-select-control__input').select2()
-	}
-
-	const renderGridInEditor = () => {
-		if (props.post_list && props.post_list.length > 0) {
-			return (
-				<div className="row">
-					{props.post_list.map(function (post) {
-						return (
-							<div className="col-3">
-								<h3>{post.title.rendered}</h3>
-							</div>
-						)
-					})}
-				</div>
-			)
-		} else {
-			return (
-				<div>
-					<h2>Selecciona las entradas en el panel lateral</h2>
-				</div>
-			)
-		}
-	}
+	}, [])
 
 	return (
 		<div {...useBlockProps()}>
@@ -85,39 +68,178 @@ export const BlockGridEdit = (props) => {
 									label="Activo"
 									checked={attributes.active}
 									onChange={(active_val) =>
-										setAttributes({ active: active_val })
+										setAttributes({
+											active: active_val,
+										})
 									}
 								/>
 							</PanelRow>
+
 							<PanelRow>
-								{props.post_list && (
+								{props.category_list && (
 									<SelectControl
 										multiple
-										label={__('Entradas')}
-										value={attributes.postIds}
-										onChange={onSelectPost}
+										label={__('Categorías')}
+										value={attributes.categoryIds}
+										onChange={(posts) => {
+											var categoryIds = []
+
+											posts.forEach((id) => {
+												categoryIds.push(id)
+											})
+
+											setAttributes({
+												categoryIds: categoryIds,
+											})
+
+											// jQuery('select.components-select-control__input').select2()
+										}}
 										options={[
 											{
 												value: null,
-												label: 'Seleccione una entrada',
+												label: 'Seleccione una categoría',
 												disabled: true,
 											},
 										].concat(
-											props.post_list.map((post) => {
+											props.category_list.map((post) => {
 												return {
 													value: post.id,
-													label: post.title.rendered,
+													label: post.name,
 												}
 											})
 										)}
 									/>
 								)}
 							</PanelRow>
+							<PanelRow>
+								<RadioControl
+									label="Plantillas"
+									help="The type of the current user"
+									selected={attributes.layout}
+									options={[
+										{ label: 'Plantilla 1', value: '1' },
+										{ label: 'Plantilla 2', value: '2' },
+										{ label: 'Plantilla 3', value: '3' },
+									]}
+									onChange={(layout_num) => {
+										setAttributes({
+											layout: layout_num,
+										})
+									}}
+								/>
+							</PanelRow>
 						</PanelBody>
 					</InspectorControls>
 				}
 
-				{renderGridInEditor()}
+				{posts ? (
+					<div className="container">
+						<PanelBody title={__('Textos', 'awp')} initialOpen={true}>
+							<PanelRow>
+								<div className="row justify-content-between">
+									<div className="col-6">
+										<RichText
+											className={`input-text`}
+											style={{
+												textAlign: attributes.alignment,
+											}}
+											tagName="span"
+											onChange={(newTitle) => {
+												setAttributes({
+													title: newTitle,
+												})
+											}}
+											value={attributes.title}
+											placeholder={__('Título...', 'arteuy-theme')}
+										/>
+									</div>
+									<div className="col-6">
+										<RichText
+											className={`input-text`}
+											style={{
+												textAlign: attributes.alignment,
+											}}
+											tagName="span"
+											onChange={(newTitle_view_all) => {
+												setAttributes({
+													title_view_all: newTitle_view_all,
+												})
+											}}
+											value={attributes.title_view_all}
+											placeholder={__(
+												'Texto del enlace...',
+												'arteuy-theme'
+											)}
+										/>
+									</div>
+								</div>
+							</PanelRow>
+
+							<PanelRow>
+								<div className="row justify-content-between">
+									<div className="col-12">
+										<RichText
+											className={`input-text`}
+											style={{
+												textAlign: attributes.alignment,
+											}}
+											tagName="span"
+											onChange={(newSubtitle) => {
+												setAttributes({
+													subtitle: newSubtitle,
+												})
+											}}
+											value={attributes.subtitle}
+											placeholder={__(
+												'Subtítulo...',
+												'arteuy-theme'
+											)}
+										/>
+									</div>
+								</div>
+							</PanelRow>
+						</PanelBody>
+						<PanelBody
+							title={__('Previsualización', 'awp')}
+							initialOpen={true}
+						>
+							<PanelRow>
+								<section class="grid-section">
+									<div class="d-flex justify-content-between">
+										<h2>{attributes.title}</h2>
+										<a href="#">{attributes.title_view_all}</a>
+									</div>
+									<div class="d-flex justify-content-between">
+										<h3>{attributes.subtitle}</h3>
+									</div>
+									<div class="row">
+										{posts.map(function (post, index) {
+											return (
+												<div
+													className={`col-${
+														layout_config[attributes.layout]
+															.column_sizes[index]
+													} card-item`}
+												>
+													<img
+														src={cardLogoImg}
+														alt="Imagen destacada"
+													/>
+													<h4>{post.title.rendered}</h4>
+													<h5>Directorio</h5>
+												</div>
+											)
+										})}
+									</div>
+								</section>
+							</PanelRow>
+						</PanelBody>
+					</div>
+				) : (
+					<div>
+						<h2>Selecciona las entradas en el panel lateral</h2>
+					</div>
+				)}
 			</Fragment>
 		</div>
 	)
@@ -140,19 +262,32 @@ export const registerDefaultBlockGrid = () => {
 				type: 'boolean',
 				default: true,
 			},
-			postIds: {
+			categoryIds: {
 				type: 'array',
 				default: [],
+			},
+			title: {
+				type: 'string',
+				default: '',
+			},
+			subtitle: {
+				type: 'string',
+				default: '',
+			},
+			title_view_all: {
+				type: 'string',
+				default: '',
+			},
+			layout: {
+				type: 'string',
+				default: '1',
 			},
 		},
 		edit: withSelect((select, props) => {
 			const { getEntityRecords } = select('core')
 
 			return {
-				post_list: getEntityRecords('postType', 'post', {
-					per_page: 4,
-					page: 1,
-				}),
+				category_list: getEntityRecords('taxonomy', 'category'),
 			}
 		})(BlockGridEdit),
 		save: () => {

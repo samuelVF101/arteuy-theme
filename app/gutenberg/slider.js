@@ -86,7 +86,12 @@ export const BlockSlideEdit = (props) => {
 						{attributes.mediaUrls.map(function (img_url) {
 							return (
 								<div className="swiper-slide">
-									<img src={img_url} />
+									<div
+										className="img"
+										style={{
+											backgroundImage: `url(${img_url})`,
+										}}
+									/>
 								</div>
 							)
 						})}
