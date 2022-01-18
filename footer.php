@@ -13,13 +13,6 @@
 ?>
 
 <footer id="colophon" class="site-footer">
-	<div class="footer-section-newsletter">
-		<h3>Accede a información actualizada sobre el mundo de la artesanía</h3>
-		<form action="">
-			<input type="email" name="email" id="email">
-			<button type="submit" class="btn btn-primary">Registrarme</button>
-		</form>
-	</div>
 	<div class="footer-section-menu">
 		<div class="row">
 			<div class="col-12 col-md-3">

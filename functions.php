@@ -340,6 +340,20 @@ function gutenberg_register_blocks()
 
 add_action('init', 'gutenberg_register_blocks');
 
+
+//Eliminar todos las etiquetas p vacías
+add_filter('the_content', function ($content) {
+
+	// Check if we're inside the main loop in a single Post.
+	if (is_singular() && in_the_loop() && is_main_query()) {
+		return preg_replace('/<p><\/p>/', '', $content);
+	}
+
+	return $content;
+}, 1);
+
+
+
 /**
  * Implement the Custom Header feature.
  */

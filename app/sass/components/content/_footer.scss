@@ -1,14 +1,14 @@
-.site-footer{
-    width: 100%;
-    .footer-section-newsletter{
-        height: 468px;
-        background-image: url(../images/footer_1.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .footer-section-menu{
-        height: 766px;
-        background-color: #333333;
-    }
-    
+.footer-section-newsletter {
+	height: 468px;
+	background-image: url(../images/footer_1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.site-footer {
+	width: 100%;
+	.footer-section-menu {
+		height: 766px;
+		background-color: #333333;
+	}
 }

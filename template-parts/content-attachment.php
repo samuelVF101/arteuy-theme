@@ -11,8 +11,6 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="px-0">
-		<?php the_content(); ?>
-	</div><!-- .entry-content -->
+	<?php the_content(); ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->
